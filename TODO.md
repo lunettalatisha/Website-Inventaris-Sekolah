@@ -1,4 +1,0 @@
-- [x] Update routes/web.php to change route name from 'borrow.' to 'borrowings.'.
-- [x] Update resources/views/templates/app.blade.php to use route('admin.borrowings.index').
-- [x] Update app/Http/Controllers/BorrowingController.php to use redirect()->route('admin.borrowings.index').
-- [ ] Test the application to ensure the route works correctly.
