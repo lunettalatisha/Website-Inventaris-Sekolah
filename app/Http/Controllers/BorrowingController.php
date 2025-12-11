@@ -178,48 +178,17 @@ class BorrowingController extends Controller
 
         return response()->json([
             'labels' => $data->pluck('name'),
+            //ngambil nilai
             'data'   => $data->pluck('total'),
         ]);
     }
 
-    // return view for chart page (existing) or other
+    // munculin di halaman dashboard
     public function chart()
     {
-        return view('admin.borrowings.chart'); // jika Anda punya view khusus, kalau tidak, tetap gunakan dashboard
+        return view('admin.borrowings.chart'); 
     }
-
-    // JSON untuk chart bar (7 hari terakhir)
-    public function chartBar()
-    {
-        $days = 7;
-        $labels = [];
-        $counts = [];
-
-        for ($i = $days - 1; $i >= 0; $i--) {
-            $date = Carbon::today()->subDays($i)->toDateString();
-            $labels[] = $date;
-            $counts[$date] = 0;
-        }
-
-        // pilih kolom tanggal yang ada di tabel
-        $dateColumn = Schema::hasColumn('borrowings', 'borrow_date') ? 'borrow_date' : 'created_at';
-
-        $rows = Borrowing::selectRaw("DATE($dateColumn) as date, COUNT(*) as total")
-            ->whereNotNull($dateColumn)
-            ->where($dateColumn, '>=', Carbon::today()->subDays($days - 1)->startOfDay())
-            ->groupBy('date')
-            ->orderBy('date')
-            ->get();
-
-        foreach ($rows as $r) {
-            $counts[$r->date] = (int) $r->total;
-        }
-
-        return response()->json([
-            'labels' => $labels,
-            'data' => array_values($counts),
-        ]);
-    }
+    
 
     // JSON untuk chart pie (status)
 public function chartPie()

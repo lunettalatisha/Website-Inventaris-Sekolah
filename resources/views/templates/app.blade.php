@@ -129,6 +129,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('admin.dashboard') }}">Dashboard</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('profile') }}">My Profile</a>
+                        </li>
 
                         <!-- Data Master dropdown (admin) -->
                         <li class="nav-item dropdown">
@@ -147,7 +150,7 @@
                                     <a class="dropdown-item" href="{{ route('admin.items.index') }}">
                                         <i class="bi bi-box-seam me-2"></i>Data Barang
                                     </a>
-                                </li>
+                                </li>   
                                 <li>
                                     <a class="dropdown-item" href="{{ route('admin.borrowings.index') }}">
                                         <i class="bi bi-arrow-left-right me-2"></i>Data Peminjaman & Pengembalian
